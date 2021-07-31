@@ -1,8 +1,4 @@
 {
-  "experimentalBabelParserPluginsList": [
-    "jsx",
-    "typescript"
-  ],
   "overrides": [
     {
       "files": [

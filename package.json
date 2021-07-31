@@ -28,12 +28,13 @@
     "build": "run-p build:*",
     "build:nextjs": "next build",
     "build:storybook": "build-storybook",
-    "eslint": "next lint",
-    "eslint:fix": "next lint --fix",
-    "check-types": "tsc --noEmit",
-    "lint": "run-p eslint check-types",
-    "lint:fix": "run-p eslint:fix check-types",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "run-p -c lint:*",
+    "lint:check-types": "tsc . --noEmit",
+    "lint:eslint": "eslint . --color --ext .js,.jsx,.ts,.tsx",
+    "lint:prettier": "prettier --check .",
+    "fix": "run-p -c fix:*",
+    "fix:eslint": "eslint . --fix --color --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write .",
     "test": "echo \"Write tests!\" && exit 1"
   },
   "importSort": {
@@ -44,10 +45,13 @@
   },
   "lint-staged": {
     "*.{js|jsx|ts|tsx}": [
-      "yarn lint:fix",
+      "yarn fix",
       "yarn format"
     ],
     "*.{json|md}": [
+      "yarn format"
+    ],
+    ".{eslint|prettier}rc": [
       "yarn format"
     ]
   },

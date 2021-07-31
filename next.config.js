@@ -1,14 +1,33 @@
-const { join } = require('path')
+const { resolve } = require('path')
 
 const withCSS = require('@zeit/next-css')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
-const DEV_TSCONFIG = 'tsconfig.json'
-const PROD_TSCONFIG = 'tsconfig.prod.json'
-
-module.exports = withCSS({
+/** @type {import('next').NextConfig} */
+const nextConfig = withCSS({
+  reactStrictMode: true,
   webpack: (config, { dev }) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '#': resolve(__dirname, 'public'),
+      '@': resolve(__dirname, 'src'),
+    }
+
+    const DEV_TSCONFIG = resolve(__dirname, 'tsconfig.dev.json')
+    const PROD_TSCONFIG = resolve(__dirname, 'tsconfig.prod.json')
     const configFile = dev ? DEV_TSCONFIG : PROD_TSCONFIG
+    config.plugins = [
+      ...config.plugins,
+      new ForkTsCheckerWebpackPlugin({
+        eslint: {
+          files: './src/**/*.{js,ts,tsx}',
+        },
+        typescript: {
+          configFile,
+        },
+      }),
+    ]
+
     config.module.rules = [
       ...config.module.rules,
       {
@@ -37,20 +56,8 @@ module.exports = withCSS({
       },
     ]
 
-    config.resolve.alias['~'] = join(__dirname, 'public')
-    config.resolve.alias['@'] = join(__dirname, 'src')
-
-    config.plugins = [
-      ...config.plugins,
-      new ForkTsCheckerWebpackPlugin({
-        eslint: {
-          // required - same as command
-          // `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
-          files: './src/**/*.{ts,tsx,js,jsx}',
-        },
-      }),
-    ]
-
     return config
   },
 })
+
+module.exports = nextConfig

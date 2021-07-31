@@ -1,6 +1,6 @@
 const Path = require('path')
 
-module.exports = {
+const storybookConfig = {
   stories: ['../src/**/*.stories.tsx'],
   addons: [
     '@storybook/addon-actions',
@@ -40,3 +40,5 @@ module.exports = {
     return config
   },
 }
+
+module.exports = storybookConfig

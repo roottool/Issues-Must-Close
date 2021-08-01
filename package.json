@@ -61,7 +61,6 @@
     "next": "^11.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-helmet": "^6.1.0",
     "react-select": "^4.3.1"
   },
   "devDependencies": {
@@ -74,7 +73,6 @@
     "@linaria/webpack-loader": "^3.0.0-beta.6",
     "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-docs": "^6.3.6",
-    "@storybook/addon-info": "^5.3.19",
     "@storybook/addon-knobs": "^6.0.26",
     "@storybook/addon-links": "^6.3.6",
     "@storybook/addon-storysource": "^6.3.6",
@@ -85,7 +83,6 @@
     "@types/node": "^16.4.8",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.8",
-    "@types/react-helmet": "^6.1.0",
     "@types/react-select": "^4.0.17",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
@@ -108,13 +105,10 @@
     "is-ci": "^3.0.0",
     "lint-staged": ">=11.1.1",
     "next-compose-plugins": "^2.2.0",
-    "next-optimized-images": "^2.6.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "react-is": "^17.0.2",
-    "responsive-loader": "^2.2.0",
     "storybook-addon-designs": "^6.0.1",
-    "typescript": "^4.0.3",
-    "webp-loader": "^0.6.0"
+    "typescript": "^4.0.3"
   }
 }

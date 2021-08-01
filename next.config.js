@@ -2,9 +2,9 @@ const { resolve } = require('path')
 
 const withCSS = require('@zeit/next-css')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const withPlugins = require('next-compose-plugins')
 
-/** @type {import('next').NextConfig} */
-const nextConfig = withCSS({
+const nextConfig = {
   reactStrictMode: true,
   webpack: (config, { dev }) => {
     config.resolve.alias = {
@@ -20,7 +20,7 @@ const nextConfig = withCSS({
       ...config.plugins,
       new ForkTsCheckerWebpackPlugin({
         eslint: {
-          files: './src/**/*.{js,ts,tsx}',
+          files: './src/**/*.{ts,tsx}',
         },
         typescript: {
           configFile,
@@ -30,10 +30,6 @@ const nextConfig = withCSS({
 
     config.module.rules = [
       ...config.module.rules,
-      {
-        loader: 'file-loader',
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|eot|ttf)$/i,
-      },
       {
         exclude: [/node_modules/],
         test: /\.tsx$/,
@@ -55,9 +51,8 @@ const nextConfig = withCSS({
         ],
       },
     ]
-
     return config
   },
-})
+}
 
-module.exports = nextConfig
+module.exports = withPlugins([withCSS], nextConfig)

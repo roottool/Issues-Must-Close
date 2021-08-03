@@ -1,4 +1,9 @@
-const Path = require('path')
+const path = require('path')
+const { join, resolve } = path
+
+const publicDirPath = resolve(__dirname, join('..', 'public'))
+const srcDirPath = resolve(__dirname, join('..', 'src'))
+const tsconfigPath = resolve(__dirname, join('..', 'tsconfig.json'))
 
 const storybookConfig = {
   stories: ['../src/**/*.stories.tsx'],
@@ -12,7 +17,7 @@ const storybookConfig = {
       options: {
         rule: {
           test: [/\.stories\.tsx?$/],
-          include: [Path.resolve(__dirname, '../src')],
+          include: [srcDirPath],
         },
         loaderOptions: {
           parser: 'typescript',
@@ -24,19 +29,18 @@ const storybookConfig = {
       name: '@storybook/preset-typescript',
       options: {
         tsLoaderOptions: {
-          configFile: Path.resolve(__dirname, './tsconfig.json'),
+          configFile: tsconfigPath,
         },
-        include: [Path.resolve(__dirname, '../src')],
+        include: [srcDirPath],
         transpileManager: true,
       },
     },
   ],
-  webpackFinal: async (config) => {
-    const PUBLIC = 'public'
-    const publicAlias = `@${PUBLIC}`
-    config.resolve.alias[publicAlias] = Path.resolve(__dirname, `../${PUBLIC}`)
-    config.resolve.extensions.push('.ts', '.tsx', '.png')
+  webpackFinal: (config) => {
+    config.resolve.alias['#'] = publicDirPath
+    config.resolve.alias['@'] = srcDirPath
 
+    config.resolve.extensions.push('.ts', '.tsx', '.png')
     return config
   },
 }

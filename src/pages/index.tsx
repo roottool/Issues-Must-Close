@@ -1,7 +1,8 @@
-import { MultiSelectArea, Picture } from '@src/components'
-import { CONSTANTS } from '@src/utils/constants'
 import { css } from 'linaria'
 import { FC, useState } from 'react'
+
+import { MultiSelectArea, Picture } from '@/components'
+import { CONSTANTS } from '@/utils/constants'
 
 const Home: FC = () => {
   const { LOGO_ALT, SEARCH_FILTER } = CONSTANTS

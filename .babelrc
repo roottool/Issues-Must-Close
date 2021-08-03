@@ -1,10 +1,4 @@
 {
-  "presets": [
-    "next/babel",
-    "@linaria"
-  ],
-  "plugins": [
-    "macros",
-    "xwind/babel"
-  ]
+  "presets": ["next/babel", "@linaria"],
+  "plugins": ["macros", "xwind/babel"]
 }

@@ -19,7 +19,7 @@ const Seo: FC = () => {
       <meta key={description} content={DESCRIPTION} name={description} />
       <meta
         key={og.image}
-        content={require('@public/images/logo.png')}
+        content={require('#/images/logo.png')}
         property={og.image}
       />
       <meta key={og.title} content={SITE_TITLE} property={og.title} />
@@ -34,7 +34,7 @@ const Seo: FC = () => {
       />
       <meta
         key={twitter.image}
-        content={require('@public/images/logo.png')}
+        content={require('#/images/logo.png')}
         name={twitter.image}
       />
       <meta key={twitter.imageAlt} content={LOGO_ALT} name={twitter.imageAlt} />

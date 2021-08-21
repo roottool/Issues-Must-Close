@@ -1,4 +1,4 @@
-import type { AuthorModel, LabelModel } from '@/services/domain/models'
+import type { AuthorModel, LabelModel } from '@/services/entities'
 
 export class Issue {
   constructor(
@@ -6,10 +6,11 @@ export class Issue {
     private readonly _url: string,
     private readonly _title: string,
     private readonly _author: AuthorModel,
-    private readonly _totalAssigneesCount: number,
-    private readonly _labels: LabelModel[] // private readonly _createdAt,
-  ) // private readonly _updatedAt
-  {}
+    private readonly _hasAssignees: boolean,
+    private readonly _labels: LabelModel[],
+    private readonly _createdAt: Date,
+    private readonly _updatedAt: Date
+  ) {}
 
   id(): string {
     return this._id
@@ -27,19 +28,19 @@ export class Issue {
     return this._author
   }
 
-  totalAssigneesCount(): number {
-    return this._totalAssigneesCount
+  hasAssignees(): boolean {
+    return this._hasAssignees
   }
 
   labels(): LabelModel[] {
     return this._labels
   }
 
-  // createdAt() {
-  //   return this._createdAt
-  // }
+  createdAt(): Date {
+    return this._createdAt
+  }
 
-  // updatedAt() {
-  //   return this._updatedAt
-  // }
+  updatedAt(): Date {
+    return this._updatedAt
+  }
 }

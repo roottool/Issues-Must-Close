@@ -16,7 +16,7 @@ generates:
     plugins:
       - typescript-operations
     config:
-      defaultScalarType: 'string | unknown'
+      defaultScalarType: unknown
       immutableTypes: true
       noExport: true
     hooks:
